@@ -1,0 +1,412 @@
+/* استایل‌های هدر */
+.header {
+  background-color: #e2f3fa;
+  margin-top: 20px;
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 10px;
+}
+
+.companyInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.companyTitle {
+  font-family: "Vazir", sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  padding-right: 30px;
+  white-space: nowrap; /* جلوگیری از شکستن خط */
+  overflow: hidden; /* مخفی کردن متن اضافی */
+  text-overflow: ellipsis; /* نمایش "..." برای متن طولانی */
+}
+
+/* استایل‌های کارت */
+.card {
+  padding: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-height: 30px; /* افزایش ارتفاع برای فضای کافی */
+  display: flex;
+  flex-direction: column;
+}
+
+.cardContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch; /* کشیدن عناصر برای پر کردن ارتفاع */
+  gap: 16px;
+  flex: 1; /* پر کردن فضای کارت */
+}
+
+/* فرم سمت چپ */
+.formLeft {
+  width: 50%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: space-between; /* پخش کردن عناصر در جهت عمودی */
+  min-height: 10px; /* حداقل ارتفاع برای اطمینان از چسبیدن به پایین */
+}
+
+.refundButton {
+  font-family: "Vazir", sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 100px;
+  border: 2px solid #6297a9;
+  border-radius: 8px;
+  background-color: white;
+  color: #6297a9;
+  cursor: pointer;
+  white-space: nowrap; /* جلوگیری از شکستن خط */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.vipText {
+  font-family: "Vazir", sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 100px;
+  border: 2px solid #000000;
+  border-radius: 8px;
+  background-color: white;
+  color: #060000;
+  white-space: nowrap; /* جلوگیری از شکستن خط */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.buySection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.buyButton {
+  font-family: "Vazir", sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 8px 50px;
+  border: 2px solid #0d5990;
+  border-radius: 8px;
+  background-color: #0d5990;
+  color: white;
+  cursor: pointer;
+  white-space: nowrap; /* جلوگیری از شکستن خط */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.price {
+  font-family: "Vazir", sans-serif;
+  font-size: 16px;
+  white-space: nowrap; /* جلوگیری از شکستن خط */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* فرم سمت راست */
+.formRight {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* فاصله بین عناصر داخل formRight */
+}
+
+.labels {
+  display: flex;
+  justify-content: space-around; /* تغییر به space-around برای هم‌ترازی بهتر */
+  align-items: center;
+}
+
+.label {
+  flex: 0 1 auto; /* عرض برچسب فقط به اندازه محتوا */
+  text-align: center; /* وسط‌چین کردن متن */
+}
+
+.tripInfo {
+  display: flex;
+  justify-content: space-around; /* هم‌ترازی اطلاعات مبدا و مقصد */
+  font-size: 14px;
+  color: #6b7280;
+  font-family: "Vazir", sans-serif;
+  gap: 30px; /* فاصله ثابت بین اطلاعات */
+}
+
+.tripInfo > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 0 1 auto; /* عرض اطلاعات فقط به اندازه محتوا */
+}
+
+.tripInfo > div > p,
+.tripInfo > div > span {
+  white-space: nowrap; /* جلوگیری از شکستن خط */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.origin {
+  text-align: right;
+}
+
+.destination {
+  text-align: right; /* تغییر به right برای هم‌ترازی با مقصد */
+}
+
+.seatsInfo {
+  border: 2px solid #ccc;
+  margin: 5px;
+  padding: 8px; /* افزایش padding برای فضای داخلی */
+  display: flex;
+  flex-direction: column; /* چیدمان عمودی */
+  gap: 8px; /* فاصله بین seatsHeader و progress-container */
+}
+
+.seatsHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* فاصله بین لوگو و متن */
+}
+
+/* استایل‌های نوار پیشرفت */
+.progress-container {
+  border: 2px solid #ccc;
+  border-radius: 9999px;
+  overflow: hidden;
+  width: 100%;
+  margin: 0; /* حذف margin برای چسبیدن به seatsHeader */
+}
+
+.progress-bar {
+  height: 6px;
+  background-color: #e0e0e0;
+  width: 100%;
+  transition: all 0.5s ease-in-out;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #0d5990;
+}
+
+.progress-text {
+  text-align: left;
+  font-family: "Vazir", sans-serif;
+  font-size: 20px;
+  margin-left: 0; /* حذف margin-left برای چیدمان بهتر */
+  color: #0d5990;
+  white-space: nowrap; /* جلوگیری از شکستن خط */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* موبایل (تا 640px) */
+@media (max-width: 640px) {
+  .header {
+    margin-top: 10px;
+    padding: 8px;
+  }
+
+  .companyTitle {
+    font-size: 16px;
+    padding-right: 10px;
+  }
+
+  .companyInfo img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .card {
+    padding: 10px;
+    min-height: 400px; /* فضای کافی برای چسبیدن به انتها */
+  }
+
+  .cardContent {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-end; /* چسبیدن به انتهای عمودی */
+    margin-top: auto; /* اطمینان از قرار گرفتن در انتهای کارت */
+    height: 100%; /* پر کردن فضای کارت */
+  }
+
+  .formLeft {
+    width: 100%;
+    order: 2; /* فرم چپ (دکمه و قیمت) به زیر فرم راست منتقل می‌شه */
+    justify-content: flex-start; /* بازگشت به حالت اولیه برای موبایل */
+    min-height: auto; /* حذف ارتفاع ثابت در موبایل */
+  }
+
+  .formRight {
+    width: 100%;
+    order: 1; /* فرم راست (شامل تعداد صندلی‌ها) بالاتر قرار می‌گیره */
+  }
+
+  .refundButton {
+    font-size: 16px;
+    padding: 8px 20px;
+  }
+
+  .vipText {
+    font-size: 16px;
+    padding: 8px 20px;
+  }
+
+  .buySection {
+    flex-direction: column; /* دکمه و قیمت در موبایل زیر هم قرار می‌گیرن */
+    gap: 8px;
+  }
+
+  .buyButton {
+    font-size: 16px;
+    padding: 6px 20px;
+    width: 100%; /* دکمه عرض کامل می‌گیره */
+  }
+
+  .price {
+    font-size: 14px;
+  }
+
+  .labels {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .label {
+    flex: 0 1 auto; /* عرض برچسب فقط به اندازه محتوا */
+    text-align: center;
+  }
+
+  .tripInfo {
+    display: flex;
+    justify-content: space-around; /* وسط‌چین کردن کل بلوک */
+    gap: 30px; /* فاصله ثابت بین اطلاعات مبدا و مقصد */
+    font-size: 12px;
+    width: 100%;
+  }
+
+  .tripInfo > div {
+    justify-content: space-around;
+    flex: 0 1 auto; /* عرض اطلاعات فقط به اندازه محتوا */
+  }
+
+  .origin {
+    text-align: right;
+  }
+
+  .destination {
+    text-align: left;
+  }
+
+  .seatsInfo img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .progress-text {
+    font-size: 14px;
+  }
+
+  .progress-container {
+    border-width: 1px;
+  }
+
+  .progress-bar {
+    height: 4px;
+  }
+}
+
+/* تبلت (641px تا 1024px) */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .header {
+    margin-top: 15px;
+    padding: 10px;
+  }
+
+  .companyTitle {
+    font-size: 18px;
+    padding-right: 20px;
+  }
+
+  .companyInfo img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .cardContent {
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  .formLeft,
+  .formRight {
+    width: 50%;
+  }
+
+  .refundButton {
+    font-size: 17px;
+    padding: 8px 60px;
+  }
+
+  .vipText {
+    font-size: 17px;
+    padding: 8px 60px;
+  }
+
+  .buyButton {
+    font-size: 17px;
+    padding: 8px 40px;
+  }
+
+  .progress-text {
+    font-size: 16px;
+  }
+}
+
+/* دسکتاپ (بزرگتر از 1024px) */
+@media (min-width: 1025px) {
+  .header {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+
+  .card {
+    max-width: 970px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 99%;
+  }
+
+  .companyTitle {
+    font-size: 20px;
+  }
+
+  .refundButton {
+    padding: 10px 100px;
+  }
+
+  .vipText {
+    padding: 7px 90px;
+  }
+
+  .progress-text {
+    font-size: 18px;
+  }
+}
