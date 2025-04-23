@@ -10,20 +10,28 @@ const queryClient = new QueryClient();
 
 export default function Home() {
   const [sort, setSort] = useState<"asc" | "desc">("asc");
+  const [timeFilter, setTimeFilter] = useState<"morning" | "noon" | "evening" | "night" | null>(null);
 
   const { data: tickets = [], isLoading, error } = useQuery({
-    queryKey: ["tickets", sort],
-    queryFn: () => getTickets(sort),
+    queryKey: ["tickets", sort, timeFilter],
+    queryFn: () => getTickets(sort, timeFilter),
   });
 
   return (
     <QueryClientProvider client={queryClient}>
       <div>
-        <Filters onSortChange={setSort} sort={sort} />
+        <Filters
+          onSortChange={setSort}
+          sort={sort}
+          onTimeFilterChange={setTimeFilter}
+          timeFilter={timeFilter}
+        />
         {isLoading ? (
-          <p>در حال بارگذاری...</p>
+          <p className="text-center py-4">در حال بارگذاری...</p>
         ) : error ? (
-          <p>خطایی رخ داد: {error.message}</p>
+          <p className="text-center py-4 text-red-500">خطایی رخ داد: {error.message}</p>
+        ) : tickets.length === 0 ? (
+          <p className="text-center py-4">هیچ تیکتی برای این فیلتر یافت نشد.</p>
         ) : (
           <CardList sort={sort} tickets={tickets} />
         )}
