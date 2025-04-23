@@ -9,7 +9,7 @@ interface FiltersProps {
   onTimeFilterChange: (time: "all" | "morning" | "noon" | "evening" | "night" | null) => void;
   onCompanyFilterChange: (companies: string[]) => void;
   sort: "asc" | "desc" | "none";
-  timeFilter: "all" | "morning" | "noon" | "evening" | "night" | null;  
+  timeFilter: "all" | "morning" | "noon" | "evening" | "night" | null;
   uniqueCompanies: string[];
   selectedCompanies: string[];
 }
@@ -64,11 +64,11 @@ export default function Filters({
               <ChevronDown className="ml-[8px] h-[16px] w-[28px] opacity-[0.5]" />
             </Button>
           </PopoverTrigger>
-          <PopoverContent className="w-[full] p-[8px] max-h-[240px] overflow-auto bg-[white] shadow-[0px_4px_6px_rgba(0,_0,_0,_0.1)] rounded-[12px] flex flex-wrap justify-start gap-[8px]">
+          <PopoverContent className="w-[full] p-[8px] max-h-[240px] overflow-auto bg-[white] shadow-[0px_4px_6px_rgba(0,_0,_0,_0.1)] rounded-[12px] flex flex-col gap-[8px]">
             {[{ label: "همه", value: "all" }, { label: "صبح (۶ تا ۱۲)", value: "morning" }, { label: "ظهر (۱۲ تا ۱۶)", value: "noon" }, { label: "عصر (۱۶ تا ۲۰)", value: "evening" }, { label: "شب (۲۰ تا ۲۴)", value: "night" }].map(({ label, value }) => (
               <div
                 key={value}
-                onClick={() => onTimeFilterChange(value as "all" | "morning" | "noon" | "evening" | "night" | null)}  
+                onClick={() => onTimeFilterChange(value as "all" | "morning" | "noon" | "evening" | "night" | null)}
                 className={`flex justify-between items-center p-[8px] rounded-[8px] cursor-pointer transition-colors duration-[200ms] hover:bg-[#e2f0ff] ${
                   timeFilter === value ? "bg-[#c6f0ff]" : ""
                 }`}
