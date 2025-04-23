@@ -3,19 +3,62 @@
 import Filters from "@/components/Card/Fillters";
 import CardList from "@/components/Card/Card";
 import { useQuery, QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { getTickets } from "@/lib/getTickets";
+import { Ticket } from "@/lib/types";
 
 const queryClient = new QueryClient();
 
 export default function Home() {
-  const [sort, setSort] = useState<"asc" | "desc">("asc");
+  const [sort, setSort] = useState<"asc" | "desc" | "none">("none");
   const [timeFilter, setTimeFilter] = useState<"morning" | "noon" | "evening" | "night" | null>(null);
 
-  const { data: tickets = [], isLoading, error } = useQuery({
-    queryKey: ["tickets", sort, timeFilter],
-    queryFn: () => getTickets(sort, timeFilter),
+  // گرفتن دیتای خام یک‌بار
+  const { data: rawTickets = [], isLoading, error } = useQuery({
+    queryKey: ["tickets"], // بدون وابستگی به sort یا timeFilter
+    queryFn: getTickets,
   });
+
+  // تابع کمکی برای پارس کردن زمان
+  const parseTime = (timeStr: string): number | null => {
+    try {
+      const normalizedTime = timeStr.replace(/[\u06F0-\u06F9]/g, (d) =>
+        String.fromCharCode(d.charCodeAt(0) - 0x06f0 + 0x0030)
+      );
+      const [hour] = normalizedTime.split(":").map(Number);
+      if (isNaN(hour) || hour < 0 || hour > 23) return null;
+      return hour;
+    } catch (error) {
+      console.error(`Error parsing time: ${timeStr}`, error);
+      return null;
+    }
+  };
+
+  // فیلتر و مرتب‌سازی سمت کلاینت
+  const filteredTickets = useMemo(() => {
+    let result = [...rawTickets];
+
+    // فیلتر زمان
+    if (timeFilter) {
+      result = result.filter((ticket) => {
+        const hour = parseTime(ticket.origin.time);
+        if (hour === null) return false;
+        if (timeFilter === "morning" && hour >= 6 && hour < 12) return true;
+        if (timeFilter === "noon" && hour >= 12 && hour < 16) return true;
+        if (timeFilter === "evening" && hour >= 16 && hour < 20) return true;
+        if (timeFilter === "night" && hour >= 20 && hour <= 23) return true;
+        return false;
+      });
+    }
+
+    // مرتب‌سازی قیمت
+    if (sort === "asc") {
+      return result.sort((a, b) => a.price - b.price);
+    } else if (sort === "desc") {
+      return result.sort((a, b) => b.price - b.price);
+    }
+    return result; // بدون مرتب‌سازی
+  }, [rawTickets, sort, timeFilter]);
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -30,10 +73,10 @@ export default function Home() {
           <p className="text-center py-4">در حال بارگذاری...</p>
         ) : error ? (
           <p className="text-center py-4 text-red-500">خطایی رخ داد: {error.message}</p>
-        ) : tickets.length === 0 ? (
+        ) : filteredTickets.length === 0 ? (
           <p className="text-center py-4">هیچ تیکتی برای این فیلتر یافت نشد.</p>
         ) : (
-          <CardList sort={sort} tickets={tickets} />
+          <CardList sort={sort} tickets={filteredTickets} />
         )}
       </div>
     </QueryClientProvider>
