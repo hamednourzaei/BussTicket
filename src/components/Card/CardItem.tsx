@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Image from "next/image";
 import Link from "next/link";
 import { Label } from "../ui/label";
-import styles from "./CardItem.module.css"; 
+import styles from "./CardItem.module.css";
 
 interface Ticket {
   id: number;
@@ -22,11 +22,11 @@ interface Ticket {
     time: string;
     date: string;
   };
-  availableSeats: number; 
+  availableSeats: number;
 }
 
 export default function CardItem({ ticket }: { ticket: Ticket }) {
-  const totalSeats = 100; 
+  const totalSeats = 100;
   const [progress, setProgress] = useState(13);
 
   useEffect(() => {
@@ -41,6 +41,7 @@ export default function CardItem({ ticket }: { ticket: Ticket }) {
         <div className={styles.headerContent}>
           <Link href="/">
             <Image
+              loading="lazy"
               src="/ImageIcon/GoBackBlue.svg"
               alt="بازگشت به صفحه اصلی"
               width={30}
@@ -51,6 +52,7 @@ export default function CardItem({ ticket }: { ticket: Ticket }) {
             <h2 className={styles.companyTitle}>{ticket.companyTitle}</h2>
             <Link href="/">
               <Image
+                loading="lazy"
                 src="/ImageIcon/GitiNavard.svg"
                 alt="لوگو گیتی‌نورد"
                 width={60}
@@ -105,6 +107,7 @@ export default function CardItem({ ticket }: { ticket: Ticket }) {
               <div className={styles.seatsInfo}>
                 <div className={styles.seatsHeader}>
                   <Image
+                    loading="lazy"
                     src="/ImageIcon/Chairs.svg"
                     alt="آیکون صندلی‌ها"
                     width={40}
