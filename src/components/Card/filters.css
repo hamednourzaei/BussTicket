@@ -1,0 +1,37 @@
+/* Transition and Hover Effects */
+.transition-colors {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.transition-colors-duration-300ms {
+  transition: background-color 300ms ease, color 300ms ease;
+}
+
+.hover\:bg-blue-50:hover {
+  background-color: #ebf8ff;
+}
+
+.hover\:border-blue-500:hover {
+  border-color: #3182ce;
+}
+
+/* Popover item hover effect */
+.popover-item {
+  transition: background-color 0.2s ease;
+}
+
+.popover-item:hover {
+  background-color: #e2f0ff;
+}
+
+.popover-item.selected {
+  background-color: #c6f0ff;
+}
+
+.popover-item .check-icon {
+  transition: transform 0.2s ease;
+}
+
+.popover-item:hover .check-icon {
+  transform: scale(1.2);
+}

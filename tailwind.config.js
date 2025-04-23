@@ -2,13 +2,13 @@
 module.exports = {
   darkMode: ["class"], // برای dark mode با کلاس .dark
   content: [
-    "./app/**/*.{js,ts,jsx,tsx}",
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-
+    "./src/app/**/*.{js,ts,jsx,tsx}",
+    "./src/pages/**/*.{js,ts,jsx,tsx}",
+    "./src/components/**/*.{js,ts,jsx,tsx}",
+    "./src/components/ui/**/*.{ts,tsx}",
     // اگر از shadcn/ui استفاده می‌کنی:
-    "./components/**/*.{ts,tsx}",
-    "./ui/**/*.{ts,tsx}",
+    "./src/components/**/*.{ts,tsx}",
+    "./src/ui/**/*.{ts,tsx}",
   ],
   theme: {
     container: {

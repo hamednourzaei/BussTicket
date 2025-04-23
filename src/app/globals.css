@@ -1,6 +1,5 @@
 @custom-variant dark (&:is(.dark *));
-
-
+@import "tailwindcss/preflight";
 @tailwind utilities;
 
 @theme inline {
@@ -41,24 +40,24 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 html {
-  -webkit-text-size-adjust: 100%; 
-  text-size-adjust: 100%;        
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 .element {
   -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);         
+  backdrop-filter: blur(10px);
 }
 
 .noselect {
-  -webkit-user-select: none; 
-  -ms-user-select: none;      
-  user-select: none;         
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .element {
-  -webkit-backdrop-filter: blur(10px); 
-  backdrop-filter: blur(10px);         
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 :root {
