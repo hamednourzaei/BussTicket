@@ -5,7 +5,7 @@ import CardList from "@/components/Card/Card";
 import { useQuery, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState, useMemo } from "react";
 import { getTickets } from "@/lib/getTickets";
-import { Ticket } from "@/lib/types";
+
 
 const queryClient = new QueryClient();
 
@@ -13,13 +13,11 @@ export default function Home() {
   const [sort, setSort] = useState<"asc" | "desc" | "none">("none");
   const [timeFilter, setTimeFilter] = useState<"morning" | "noon" | "evening" | "night" | null>(null);
 
-  // گرفتن دیتای خام یک‌بار
   const { data: rawTickets = [], isLoading, error } = useQuery({
-    queryKey: ["tickets"], // بدون وابستگی به sort یا timeFilter
+    queryKey: ["tickets"],
     queryFn: getTickets,
   });
 
-  // تابع کمکی برای پارس کردن زمان
   const parseTime = (timeStr: string): number | null => {
     try {
       const normalizedTime = timeStr.replace(/[\u06F0-\u06F9]/g, (d) =>
@@ -34,11 +32,9 @@ export default function Home() {
     }
   };
 
-  // فیلتر و مرتب‌سازی سمت کلاینت
   const filteredTickets = useMemo(() => {
     let result = [...rawTickets];
 
-    // فیلتر زمان
     if (timeFilter) {
       result = result.filter((ticket) => {
         const hour = parseTime(ticket.origin.time);
@@ -51,13 +47,12 @@ export default function Home() {
       });
     }
 
-    // مرتب‌سازی قیمت
     if (sort === "asc") {
       return result.sort((a, b) => a.price - b.price);
     } else if (sort === "desc") {
       return result.sort((a, b) => b.price - b.price);
     }
-    return result; // بدون مرتب‌سازی
+    return result; 
   }, [rawTickets, sort, timeFilter]);
 
   return (
