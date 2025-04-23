@@ -4,9 +4,9 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 interface FiltersProps {
-  onSortChange: (sort: "asc" | "desc") => void;
+  onSortChange: (sort: "asc" | "desc" | "none") => void;
   onTimeFilterChange: (time: "morning" | "noon" | "evening" | "night" | null) => void;
-  sort: string;
+  sort: "asc" | "desc" | "none";
   timeFilter: string | null;
 }
 
@@ -15,18 +15,18 @@ export default function Filters({ onSortChange, onTimeFilterChange, sort, timeFi
 
   return (
     <div className="flex flex-col md:flex-row justify-center items-center gap-4 p-4">
-      <div className="flex gap-[10]">
+      <div className="flex gap-4">
         <button
-          className={`px-[50] py-[20] text-[20px] rounded-lg ${
-            sort === "asc" ? "bg-[#2d7be9] text-white" : "bg-[#6e6c6c] text-[white]"
+          className={`px-10 py-4 text-lg rounded-lg ${
+            sort === "asc" ? "bg-[#2d7be9] text-white" : "bg-[#6e6c6c] text-white"
           } hover:bg-[#2d7be9]`}
           onClick={() => onSortChange("asc")}
         >
           ارزان‌ترین
         </button>
         <button
-          className={`px-[50] py-[20] text-[20px] rounded-lg ${
-            sort === "desc" ? "bg-[#2d7be9] text-white" : "bg-[#6e6c6c] text-[white]"
+          className={`px-10 py-4 text-lg rounded-lg ${
+            sort === "desc" ? "bg-[#2d7be9] text-white" : "bg-[#6e6c6c] text-white"
           } hover:bg-[#2d7be9]`}
           onClick={() => onSortChange("desc")}
         >
@@ -39,9 +39,9 @@ export default function Filters({ onSortChange, onTimeFilterChange, sort, timeFi
         onValueChange={(value: TimeFilterValue) =>
           onTimeFilterChange(value === "all" ? null : value)
         }
-        className="flex flex-wrap justify-center w-[90%] mt-[20] gap-[10]"
+        className="flex flex-wrap justify-center w-[90%] mt-5 gap-4"
       >
-         <div className="flex items-center space-x-[10px]">
+        <div className="flex items-center space-x-[10px]">
           <RadioGroupItem value="all" id="all" />
           <Label htmlFor="all" className="text-lg">
             همه
@@ -71,7 +71,6 @@ export default function Filters({ onSortChange, onTimeFilterChange, sort, timeFi
             شب (۲۰ تا ۲۴)
           </Label>
         </div>
-       
       </RadioGroup>
     </div>
   );

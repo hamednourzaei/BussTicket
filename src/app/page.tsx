@@ -5,7 +5,7 @@ import CardList from "@/components/Card/Card";
 import { useQuery, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState, useMemo } from "react";
 import { getTickets } from "@/lib/getTickets";
-
+import { Ticket } from "@/lib/types";
 
 const queryClient = new QueryClient();
 
@@ -52,7 +52,7 @@ export default function Home() {
     } else if (sort === "desc") {
       return result.sort((a, b) => b.price - b.price);
     }
-    return result; 
+    return result;
   }, [rawTickets, sort, timeFilter]);
 
   return (
@@ -64,14 +64,12 @@ export default function Home() {
           onTimeFilterChange={setTimeFilter}
           timeFilter={timeFilter}
         />
-        {isLoading ? (
-          <p className="text-center py-4">در حال بارگذاری...</p>
-        ) : error ? (
+        {error ? (
           <p className="text-center py-4 text-red-500">خطایی رخ داد: {error.message}</p>
-        ) : filteredTickets.length === 0 ? (
+        ) : filteredTickets.length === 0 && !isLoading ? (
           <p className="text-center py-4">هیچ تیکتی برای این فیلتر یافت نشد.</p>
         ) : (
-          <CardList sort={sort} tickets={filteredTickets} />
+          <CardList sort={sort} tickets={filteredTickets} isLoading={isLoading} />
         )}
       </div>
     </QueryClientProvider>
