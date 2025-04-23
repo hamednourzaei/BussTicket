@@ -13,7 +13,6 @@ interface CardListProps {
 
 export default function CardList({  tickets, isLoading = false }: CardListProps) {
   if (isLoading) {
-    // نمایش ۳ کارت Skeleton موقع لودینگ
     return (
       <div className="flex items-center justify-center min-h-screen p-4">
         <div className="flex flex-col w-[970px] gap-4">
@@ -38,7 +37,6 @@ export default function CardList({  tickets, isLoading = false }: CardListProps)
   );
 }
 
-// کامپوننت Skeleton برای شبیه‌سازی کارت
 function SkeletonCard() {
   return (
     <div className={styles.card}>

@@ -48,7 +48,7 @@ export default function Home() {
         if (timeFilter === "noon" && hour >= 12 && hour < 16) return true;
         if (timeFilter === "evening" && hour >= 16 && hour < 20) return true;
         if (timeFilter === "night" && hour >= 20 && hour <= 23) return true;
-        if (timeFilter === "all") return true; // Add "all" case
+        if (timeFilter === "all") return true;
         return false;
       });
     }
