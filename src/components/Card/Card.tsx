@@ -11,7 +11,7 @@ interface CardListProps {
   isLoading?: boolean;
 }
 
-export default function CardList({ sort, tickets, isLoading = false }: CardListProps) {
+export default function CardList({  tickets, isLoading = false }: CardListProps) {
   if (isLoading) {
     // نمایش ۳ کارت Skeleton موقع لودینگ
     return (
