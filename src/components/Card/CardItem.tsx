@@ -42,6 +42,7 @@ export default function CardItem({ ticket }: { ticket: Ticket }) {
           <Link href="/">
             <Image
               loading="lazy"
+              style={{ objectFit: 'contain' }}
               src="/ImageIcon/GoBackBlue.svg"
               alt="بازگشت به صفحه اصلی"
               width={30}
@@ -53,6 +54,7 @@ export default function CardItem({ ticket }: { ticket: Ticket }) {
             <Link href="/">
               <Image
                 loading="lazy"
+                style={{ objectFit: 'contain' }}
                 src="/ImageIcon/GitiNavard.svg"
                 alt="لوگو گیتی‌نورد"
                 width={60}
@@ -107,6 +109,7 @@ export default function CardItem({ ticket }: { ticket: Ticket }) {
               <div className={styles.seatsInfo}>
                 <div className={styles.seatsHeader}>
                   <Image
+                  style={{ objectFit: 'contain' }}
                     loading="lazy"
                     src="/ImageIcon/Chairs.svg"
                     alt="آیکون صندلی‌ها"
