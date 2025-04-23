@@ -2,24 +2,32 @@
 
 import Filters from "@/components/Card/Fillters";
 import CardList from "@/components/Card/Card";
-import { useQuery, QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useState, useMemo } from "react";
+import {
+  useQuery,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
+import { useMemo } from "react";
 import { getTickets } from "@/lib/getTickets";
-import "./globals.css"
+import { useFilterStore } from "@/store/useFilterStore"; // استور جدید
+import "./globals.css";
+
 const queryClient = new QueryClient();
 
 export default function Home() {
-  const [sort, setSort] = useState<"asc" | "desc" | "none">("none");
-  const [timeFilter, setTimeFilter] = useState<"morning" | "noon" | "evening" | "night" | "all" | null>(null);
-  const [selectedCompanies, setSelectedCompanies] = useState<string[]>([]);
+  const { sort, timeFilter, selectedCompanies } = useFilterStore(); // گرفتن حالت‌ها از استور
 
-  const { data: rawTickets = [], isLoading, error } = useQuery({
+  const {
+    data: rawTickets = [],
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ["tickets"],
     queryFn: getTickets,
   });
 
   const uniqueCompanies = useMemo(() => {
-    const companies = rawTickets.map(ticket => ticket.companyTitle);
+    const companies = rawTickets.map((ticket) => ticket.companyTitle);
     return Array.from(new Set(companies));
   }, [rawTickets]);
 
@@ -54,7 +62,9 @@ export default function Home() {
     }
 
     if (selectedCompanies.length > 0) {
-      result = result.filter(ticket => selectedCompanies.includes(ticket.companyTitle));
+      result = result.filter((ticket) =>
+        selectedCompanies.includes(ticket.companyTitle)
+      );
     }
 
     if (sort === "asc") {
@@ -69,21 +79,17 @@ export default function Home() {
     <div>
       <QueryClientProvider client={queryClient}>
         <div>
-          <Filters
-            onSortChange={setSort}
-            sort={sort}
-            onTimeFilterChange={setTimeFilter}
-            timeFilter={timeFilter}
-            uniqueCompanies={uniqueCompanies}
-            selectedCompanies={selectedCompanies}
-            onCompanyFilterChange={setSelectedCompanies}
-          />
+          <Filters uniqueCompanies={uniqueCompanies} />
           {isLoading ? (
             <CardList sort={sort} tickets={[]} isLoading={true} />
           ) : error ? (
-            <p className="text-center py-4 text-red-500">خطایی رخ داد: {error.message}</p>
+            <p className="text-center py-4 text-red-500">
+              خطایی رخ داد: {error.message}
+            </p>
           ) : filteredTickets.length === 0 ? (
-            <p className="text-center py-4">هیچ تیکتی برای این فیلتر یافت نشد.</p>
+            <p className="text-center py-4">
+              هیچ تیکتی برای این فیلتر یافت نشد.
+            </p>
           ) : (
             <CardList sort={sort} tickets={filteredTickets} isLoading={false} />
           )}

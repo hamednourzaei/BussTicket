@@ -1,12 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ["class"], // برای dark mode با کلاس .dark
+  darkMode: ["class"], 
   content: [
     "./src/app/**/*.{js,ts,jsx,tsx}",
     "./src/pages/**/*.{js,ts,jsx,tsx}",
     "./src/components/**/*.{js,ts,jsx,tsx}",
     "./src/components/ui/**/*.{ts,tsx}",
-    // اگر از shadcn/ui استفاده می‌کنی:
     "./src/components/**/*.{ts,tsx}",
     "./src/ui/**/*.{ts,tsx}",
   ],
@@ -77,8 +76,6 @@ module.exports = {
   },
   plugins: [
     require("tailwindcss-animate"),
-    // اگه بعداً بخوای typography یا forms اضافه کنی:
-    // require('@tailwindcss/typography'),
-    // require('@tailwindcss/forms'),
+
   ],
 };
