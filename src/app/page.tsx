@@ -2,18 +2,27 @@
 
 import Filters from "@/components/Card/Fillters";
 import CardList from "@/components/Card/Card";
-import { useQuery, QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+  useQuery,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
 import { useState, useMemo } from "react";
 import { getTickets } from "@/lib/getTickets";
-import { Ticket } from "@/lib/types";
 
 const queryClient = new QueryClient();
 
 export default function Home() {
   const [sort, setSort] = useState<"asc" | "desc" | "none">("none");
-  const [timeFilter, setTimeFilter] = useState<"morning" | "noon" | "evening" | "night" | null>(null);
+  const [timeFilter, setTimeFilter] = useState<
+    "morning" | "noon" | "evening" | "night" | null
+  >(null);
 
-  const { data: rawTickets = [], isLoading, error } = useQuery({
+  const {
+    data: rawTickets = [],
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ["tickets"],
     queryFn: getTickets,
   });
@@ -65,11 +74,17 @@ export default function Home() {
           timeFilter={timeFilter}
         />
         {error ? (
-          <p className="text-center py-4 text-red-500">خطایی رخ داد: {error.message}</p>
+          <p className="text-center py-4 text-red-500">
+            خطایی رخ داد: {error.message}
+          </p>
         ) : filteredTickets.length === 0 && !isLoading ? (
           <p className="text-center py-4">هیچ تیکتی برای این فیلتر یافت نشد.</p>
         ) : (
-          <CardList sort={sort} tickets={filteredTickets} isLoading={isLoading} />
+          <CardList
+            sort={sort}
+            tickets={filteredTickets}
+            isLoading={isLoading}
+          />
         )}
       </div>
     </QueryClientProvider>
