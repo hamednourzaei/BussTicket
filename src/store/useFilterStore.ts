@@ -1,5 +1,4 @@
 import { create } from "zustand";
-
 interface FilterState {
   sort: "asc" | "desc" | "none";
   timeFilter: "all" | "morning" | "noon" | "evening" | "night" | null;
